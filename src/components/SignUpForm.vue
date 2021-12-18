@@ -25,8 +25,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="skills" class="form-label">Skills</label>
-                    <input type="text" class="form-control" id="skills" v-model="tempSkill" @keyup="addSkill">
-                    <span class="mx-1" v-for="skill in skills" :key="skill">{{skill}} |</span>
+                    <input type="text" class="form-control mb-2" id="skills" v-model="tempSkill" @keyup="addSkill">
+                    <span class="mx-1 skill" v-for="skill in skills" :key="skill"><span @click="deleteSkill(skill)">{{skill}} <i class="fas fa-times text-danger fs-6"></i></span></span>
                 </div>
                 <button type="submit" class="mt-3 btn btn-primary">Submit</button>
             </form>
@@ -65,6 +65,9 @@ export default {
                 }
                     this.tempSkill= ''
             }
+        },
+        deleteSkill(skill){
+            this.skills = this.skills.filter(el => el != skill)
         }
     }
 }
@@ -74,5 +77,11 @@ export default {
     .formWrapper{
         border: 1px solid black;
         border-radius: 10px;
+    }
+
+    .skill{
+        background-color: rgb(243, 243, 243);
+        border-radius: 10px;
+        padding: 5px;
     }
 </style>
